@@ -19,7 +19,7 @@ class DataProcessor:
         #This vector will be a 1x25 shape.
         #It holds calculated values for every channel(3x8) and a class corresponding to it
         calculatedValuesVector = []
-        data_set = np.empty((0, 25), float)
+        processedData = np.empty((0, 25), float)
         for i in range(0, emgChs.shape[1], int(step/2)):
             calculatedValuesVector = []
             for j in range(emgChs.shape[0]):
@@ -33,9 +33,9 @@ class DataProcessor:
                
             calculatedValuesVector.append(np.mean(emg_type[0, i : i + step - 1]))
             resizedCalculatedValues = np.array(calculatedValuesVector).reshape(1,25)
-            data_set = np.append(data_set, resizedCalculatedValues, axis=0)
+            processedData = np.append(processedData, resizedCalculatedValues, axis=0)
                     
-        return data_set
+        return processedData
          
          
 
